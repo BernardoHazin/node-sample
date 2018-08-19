@@ -3,7 +3,7 @@ const path = require('path')
 const resolver = {}
 let schema = ``
 
-const schemas = fs.readdirSync(__dirname).filter(dir => dir !== 'index.js' && dir !== 'Mutation' && dir !== 'Query' && dir !== 'Subscription')
+const schemas = fs.readdirSync(__dirname).filter(dir => dir !== 'index.js' && dir !== 'PubSub' && dir !== 'Mutation' && dir !== 'Query' && dir !== 'Subscription')
 schemas.forEach(folder => {
   fs
     .readdirSync(path.join(__dirname, `/${folder}`))
@@ -35,6 +35,9 @@ const subscriptions = require('./Subscription/schema')
 schema += queries
 schema += mutations
 schema += subscriptions
+
+// console.log(schema)
+// console.log(resolver)
 
 module.exports.typeDefs = schema
 module.exports.resolvers = resolver

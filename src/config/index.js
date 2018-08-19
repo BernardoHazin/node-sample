@@ -1,10 +1,10 @@
 const op = require('./sequelizeOperators')
 
 module.exports = {
-  port: process.env.PORT || 3001,
+  port: process.env.PORT || 3000,
   SALT_FACTOR: 10,
   db: {
-    database: process.env.DB_NAME || 'teste',
+    database: process.env.DB_NAME || 'test',
     user: 'root',
     password: 'root',
     options: {

@@ -8,6 +8,8 @@ const config = require('./config/')
 const models = require('./models')
 const { graphiqlExpress, graphqlExpress } = require('graphql-server-express')
 const { makeExecutableSchema } = require('graphql-tools')
+const { execute, subscribe } = require('graphql')
+const { SubscriptionServer } = require('subscriptions-transport-ws')
 
 /* 
 const mongoose = require('mongoose')
@@ -41,6 +43,18 @@ fs
 
 models.sequelize.sync({force: true})
   .then(() => {
-    server.listen(config.port)
-    console.log('Server started at', config.port)
+    server.listen(config.port, () => {
+      new SubscriptionServer(
+        {
+          execute,
+          subscribe,
+          schema,
+        },
+        {
+          server,
+          path: '/subscriptions',
+        }
+      )
+      console.log('Server started at', config.port)
+    })
   })
