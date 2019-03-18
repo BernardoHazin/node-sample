@@ -8,7 +8,7 @@ module.exports = {
     user: 'root',
     password: 'root',
     options: {
-      dialect: process.env.DIALECT || 'mysql',
+      dialect: process.env.DIALECT || 'sqlite',
       host: process.env.HOST || 'localhost',
       port: process.env.PORT || 3306,
       storage: './safe.mysql',
